@@ -4,7 +4,15 @@ This is a repository of code examples for the 2021 edition of CMU CS 11-711
 [Advanced NLP](http://phontron.com/class/anlp2021/).
 
 ## 1. Create an environment with dependencies specified in env.yml:
+    ```bash
     conda env create -f env.yml
+    ```
+    This command creates an environment with the dependencies specified in `env.yml`. To specify a custom name for the environment, you can use the `-n` flag followed by the desired name:
+
+    ```bash
+    conda env create -f env.yml -n myenv
+    ```
+    Replace `myenv` with your preferred environment name.
 
 ## 2. Activate the new environment:
     conda activate cs224n
