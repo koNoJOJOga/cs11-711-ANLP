@@ -7,20 +7,15 @@ import torch
 # load model and tokenizer
 tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
 
-# Determine if MPS is available
-if torch.backends.mps.is_available():
-    device = "mps"
-    print("Using MPS device")
-else:
-    device = "cpu"
-    print("MPS not available, using CPU")
+# Force CPU usage
+device = "cpu"
+print("Using CPU device")
 
 model = AutoModelForCausalLM.from_pretrained(
     "microsoft/Phi-3-mini-4k-instruct",
-    device_map=device,  # Use the determined device
+    device_map=device,
     torch_dtype="auto",
-    trust_remote_code=True,
-    # attn_implementation='eager' # Remove this line to allow MPS to use optimized attention
+    trust_remote_code=True
 )
 
 # Create a pipeline
@@ -30,8 +25,7 @@ generator = pipeline(
     tokenizer=tokenizer,
     return_full_text=False,
     max_new_tokens=50,
-    do_sample=False,
-    device=device # Pass the device to the pipeline
+    do_sample=False
 )
 
 prompt = "Write an enmail apologizing to Sarah for the tragic gardening mishap.Explain how it happened."
