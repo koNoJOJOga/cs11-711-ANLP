@@ -7,3 +7,8 @@
 ```bash
 pip freeze > requirements.txt
 ```
+
+在进行stream构建时，有一个包缺失了，`from langgraph.checkpoint.sqlite import SqliteSaver`，可以使用以下命令来安装
+```bash
+pip install langgraph-checkpoint-sqlite==2.0.3
+```
